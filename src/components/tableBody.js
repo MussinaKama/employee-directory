@@ -1,30 +1,32 @@
-import React, { Component } from "react";
-import _ from "lodash";
+import React, { Component } from 'react';
 
 class TableBody extends Component {
-renderCell = (item, column) => {
-    if (column.content) return column.content(item)
-    return _.get(item, column.path)
+    render() { 
+    const {users} = this.props;
+        return ( 
+            <tbody>
+            {users[0] !== undefined && users[0].name !== undefined ? (
+              users.map(({ login, picture, name, location, cell, email }) => {
+                return (
+                  <tr key={login.uuid}>
+                    <td>
+                      <img src={picture.medium} alt={name.first} />
+                    </td>
+                    <td>
+                      {name.first} {name.last}
+                    </td>
+                    <td>{location.state}</td>
+                    <td>{email}</td>
+                    <td>{cell}</td>
+                  </tr>
+                );
+              })
+            ) : (
+              <></>
+            )}
+          </tbody>
+        )
+    }
 }
-
-createKey = (item, column) => {
-   return item._id + (column.path || column.key)
-}
-  render() {
-    const { data, columns } = this.props;
-
-    return (
-      <tbody>
-        {data.map(item => (
-          <tr key={item._id}>
-            {columns.map(column => (
-              <td key={this.createKey(item, column)}>{this.renderCell(item, column)}</td>
-            ))}
-          </tr>
-        ))}
-      </tbody>
-    );
-  }
-}
-
+ 
 export default TableBody;

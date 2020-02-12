@@ -1,10 +1,19 @@
 import React, { Component } from "react";
 import API from "../utils/API";
+import Table from "./table";
+import Pagination from "./pagination";
+import SearchBox from "./searchBox";
+import _ from "lodash";
+import { paginate } from "../utils/paginate";
+
 
 class Users extends Component {
   state = {
     users: [{}],
-    sortColumn: { path: 'title', order: 'asc' }
+    pageSize: 25,
+    currentPage: 1,
+    searchQuery: "",
+    sortColumn: { path: "name.first", order: "asc" }
   };
 
   componentDidMount() {
@@ -15,43 +24,38 @@ class Users extends Component {
         })
       )
       .catch(err => console.log(err));
+  }
+
+  handleSort = sortColumn => {
+    this.setState({ sortColumn });
   };
 
+  handlePageChange = page => {
+    this.setState({ currentPage: page });
+  };
+
+  handleSearch = query => {
+    this.setState({searchQuery: query, currentPage: 1})
+  }
+
   render() {
+    const { length: count } = this.state.users;
+    const { users: allUsers, sortColumn, currentPage, pageSize, searchQuery } = this.state;
+    const sorted = _.orderBy(allUsers, [sortColumn.path], [sortColumn.order]);
+    const users = paginate(sorted, currentPage, pageSize);
+
+    
     return (
-      <table className="table">
-        <thead>
-          <tr>
-            <th>Image</th>
-            <th>Name</th>
-            <th>State</th>
-            <th>Email</th>
-            <th>Phone</th>
-          </tr>
-        </thead>
-        <tbody>
-          {this.state.users[0] !== undefined && this.state.users[0].name !== undefined ? (
-            this.state.users.map(({ picture, name, location, cell, email }) => {
-              return (
-                <tr>
-                  <td>
-                    <img
-                      src={picture.medium}
-                      alt={name.first}
-                    />
-                  </td>
-                  <td>{name.first} {name.last}</td>
-                  <td>{location.state}</td>
-                  <td>{email}</td>
-                  <td>{cell}</td>
-                </tr>
-              )
-            })
-          ) : (
-              <></>
-            )}
-        </tbody>
-      </table>
+      <>
+        <SearchBox value={searchQuery} onChange={this.handleSearch}/>
+        <Table users={users} onSort={this.handleSort} sortColumn={sortColumn} />
+        <Pagination
+          itemsCount={count}
+          currentPage={currentPage}
+          pageSize={pageSize}
+          onPageChange={this.handlePageChange}
+        />
+      </>
     );
   }
 }

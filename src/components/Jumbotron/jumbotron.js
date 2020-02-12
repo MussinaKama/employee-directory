@@ -1,9 +1,10 @@
 import React from 'react';
+import "./style.css"
 
 const Jumbotron = () => {
     return ( 
       <div className="jumbotron">
-          <h1 style={{textAlign: "center"}} className="display-4">Employee Directory
+          <h1 className="display-3">Employee Directory
               <p className="lead"></p>
           </h1>
       </div>
