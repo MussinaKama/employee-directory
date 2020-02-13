@@ -1,6 +1,6 @@
 import React from 'react';
 import './App.css';
-import Jumbotron from './components/Jumbotron/jumbotron';
+import Jumbotron from './components/jumbotron';
 import Users from './components/users';
 
 function App() {
