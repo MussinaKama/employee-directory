@@ -5,6 +5,7 @@ const SearchBox = ({ handleSearch }) => {
     <input
       style={{
         width: "60%",
+        borderStyle: "solid",
         borderRadius: "4px",
         borderColor: "rgb(175, 33, 33)",
         display: "block",

@@ -14,7 +14,7 @@ const Jumbotron = () => {
       <h1 className="display-3">
         Employee Directory
         <p className="lead" style={{marginTop: "15px"}}>
-          Please sort alphabetically by clicking on heading of each column or search typing first or last names
+          By clicking on heading of each column allows you to sort in ascending or descending orders. Also search by typing first or last names.
         </p>
       </h1>
     </div>
