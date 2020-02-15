@@ -60,7 +60,6 @@ class Users extends Component {
         <Table users={users} onSort={this.handleSort} sortColumn={sortColumn} />
         <Pagination
           itemsCount={count}
-         
           currentPage={currentPage}
           pageSize={pageSize}
           onPageChange={this.handlePageChange}

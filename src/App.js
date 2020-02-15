@@ -5,12 +5,10 @@ import Users from './components/users';
 
 function App() {
   return (
-    <>
-    <Jumbotron />
     <main className="container">
+    <Jumbotron />
       <Users />
     </main>
-    </>
   );
 }
 

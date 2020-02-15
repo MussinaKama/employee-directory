@@ -13,7 +13,7 @@ class Table extends Component {
   render() {
     const { users, sortColumn, onSort } = this.props;
     return (
-      <table className="table">
+      <table className="table table-dark" style={{marginTop: "10"}}>
         <TableHeader
           columns={this.columns}
           sortColumn={sortColumn}
