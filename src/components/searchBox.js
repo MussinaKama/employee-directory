@@ -5,11 +5,12 @@ const SearchBox = ({ handleSearch }) => {
     <input
       style={{
         width: "60%",
-        boxSizing: "border-box",
-        borderRadius: "5px solid rgb(175, 33, 33)",
+        borderRadius: "4px",
+        borderColor: "rgb(175, 33, 33)",
         display: "block",
         margin: "0 auto",
-        height: "100"
+        height: "50px",
+        marginBottom: "20px"
       }}
       type="text"
       name="query"
