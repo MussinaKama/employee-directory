@@ -9,6 +9,7 @@
     "axios": "^0.19.2",
     "bootstrap": "^4.4.1",
     "font-awesome": "^4.7.0",
+    "gh-pages": "^2.2.0",
     "lodash": "^4.17.15",
     "react": "^16.12.0",
     "react-dom": "^16.12.0",
@@ -18,7 +19,9 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -34,5 +37,6 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  }
+  },
+  "homepage": "https://MussinaKama.github.io/employee-directory"
 }
